@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "20240716063318"
+  },
+  "applications": ["LeadManagement"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "min", "max"],
+      "fieldValidateRulesMax": "9999999999",
+      "fieldValidateRulesMin": "1000000000"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Lead",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "interest",
+      "otherEntityRelationshipName": "lead",
+      "relationshipName": "interest",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

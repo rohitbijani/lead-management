@@ -1,0 +1,29 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+name: leadmanagement
+services:
+  app:
+    image: leadmanagement
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/LeadManagement
+      - SPRING_LIQUIBASE_URL=jdbc:postgresql://postgresql:5432/LeadManagement
+    ports:
+      - 127.0.0.1:9001:9001
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:9001/management/health
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      postgresql:
+        condition: service_healthy
+  postgresql:
+    extends:
+      file: ./postgresql.yml
+      service: postgresql
