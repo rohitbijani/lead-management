@@ -1,0 +1,44 @@
+entity Lead {
+	name String required
+    phone Long required min(1000000000) max(9999999999)
+    createdAt Instant
+    createdBy String
+    updatedAt Instant
+    updatedBy String
+}
+
+entity Interest {
+	category String required
+    brand String
+    articleId String
+    orderId String
+    isPurchased Boolean
+    createdAt Instant
+    createdBy String
+    updatedAt Instant
+    updatedBy String
+}
+
+
+relationship OneToMany {
+	Lead to Interest{lead}
+}
+
+application {
+  config {
+    baseName LeadManagement
+    applicationType monolith
+    serverPort 9001
+    prodDatabaseType postgresql
+    clientFramework react
+    clientPackageManager npm
+    authenticationType jwt
+    buildTool maven
+    enableSwaggerCodegen true
+    packageName com.jio.lead.management
+  }
+  entities *
+  dto * with mapstruct
+  paginate * with infinite-scroll
+  service all with serviceImpl
+}

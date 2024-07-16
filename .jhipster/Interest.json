@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20240716063418"
+  },
+  "applications": ["LeadManagement"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "category",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "brand",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "articleId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isPurchased",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Interest",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "lead",
+      "relationshipName": "lead",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
